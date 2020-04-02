@@ -1,3 +1,6 @@
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
 #[derive(Debug, PartialEq)]
 pub(crate) enum Status {
     Valid,
@@ -15,6 +18,7 @@ impl Status {
 }
 
 /// Receiver mode of operation.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub enum Mode {
     /// Autonomous mode without any external correction.

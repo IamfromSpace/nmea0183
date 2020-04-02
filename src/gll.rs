@@ -2,8 +2,11 @@ use crate::coords::{Latitude, Longitude};
 use crate::datetime::Time;
 use crate::modes::{Mode, Status};
 use crate::Source;
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 /// Geographic latitude ang longitude sentence with time of fix and receiver state.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct GLL {
     /// Navigational system.

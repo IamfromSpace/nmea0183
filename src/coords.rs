@@ -1,7 +1,10 @@
 //! Structures that describes coordinates that may be parsed from NMEA sentences.
 use core::convert::TryFrom;
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 /// Earth hemisphere
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub enum Hemisphere {
     /// North
@@ -15,6 +18,7 @@ pub enum Hemisphere {
 }
 
 /// Latitude as reported by receiver.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct Latitude {
     /// Degrees
@@ -121,6 +125,7 @@ impl Latitude {
 }
 
 /// Longitude as reported by receiver.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct Longitude {
     /// Degrees
@@ -227,6 +232,7 @@ impl Longitude {
 }
 
 /// Altitude reported by receiver typically in GGA sentence.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct Altitude {
     /// Altitude in meters over ground.
@@ -248,6 +254,7 @@ impl Altitude {
 }
 
 /// Speed reported by receiver typically in RMC and VTG sentences.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct Speed {
     knots: f32,
@@ -301,6 +308,7 @@ impl Speed {
 }
 
 /// The course over ground.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct Course {
     /// Course in degrees from North rotated clockwise.
@@ -327,6 +335,7 @@ impl Course {
 }
 
 /// The course over ground calculated from True course and magnetic variation.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct MagneticCourse {
     /// Course in degrees from Magnetic North Pole rotated clockwise.

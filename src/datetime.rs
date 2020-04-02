@@ -1,5 +1,9 @@
 //! NMEA date and time structures.
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
 /// NMEA date
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct Date {
     /// NMEA day
@@ -47,6 +51,7 @@ impl Date {
 }
 
 /// NMEA time in UTC
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct Time {
     /// Hours as reported by receiver
@@ -100,6 +105,7 @@ impl Time {
 }
 
 /// NMEA date and time in UTC
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct DateTime {
     /// NMEA date

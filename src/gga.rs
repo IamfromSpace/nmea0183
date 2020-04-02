@@ -3,8 +3,11 @@ use crate::coords::{Altitude, Latitude, Longitude};
 use crate::datetime::Time;
 use crate::Source;
 use core::time::Duration;
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 /// Geographic coordinates including altitude, GPS solution quality, DGPS usage information.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub struct GGA {
     /// Navigational system.
@@ -86,6 +89,7 @@ impl GGA {
 }
 
 /// Quality of GPS solution
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq)]
 pub enum GPSQuality {
     /// No solution
