@@ -2,8 +2,11 @@ use crate::coords::{Course, Latitude, Longitude, MagneticCourse, Speed};
 use crate::datetime::{Date, DateTime, Time};
 use crate::modes::{Mode, Status};
 use crate::Source;
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 /// Recommended Minimum Sentence for any GNSS source.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq, Clone)]
 pub struct RMC {
     /// Navigational system.

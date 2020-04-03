@@ -12,6 +12,7 @@ categories = ["embedded", "no-std", "parser-implementations"]
 readme = "README.md"
 
 [dependencies]
+serde = { version = "1.0", features = ["derive"], default-features = false, optional = true }
 
 [badges]
 travis-ci = { repository = "nsforth/nmea0183", branch = "v0.2.2" }

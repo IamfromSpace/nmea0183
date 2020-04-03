@@ -80,6 +80,8 @@
 use core::convert::TryFrom;
 use core::ops::BitOr;
 use core::slice::Iter;
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 pub(crate) mod common;
 pub mod coords;
 pub mod datetime;
@@ -97,6 +99,7 @@ pub use rmc::RMC;
 pub use vtg::VTG;
 
 /// Source of NMEA sentence like GPS, GLONASS or other.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Source {
     /// USA Global Positioning System
@@ -230,6 +233,7 @@ impl BitOr<Sentence> for SentenceMask {
 /// The NMEA sentence parsing result.
 /// Sentences with many null fields or sentences without valid data is also parsed and returned as None.
 /// None ParseResult may be interpreted as working receiver but without valid data.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq, Clone)]
 pub enum ParseResult {
     /// The Recommended Minimum Sentence for any GNSS. Typically most used.

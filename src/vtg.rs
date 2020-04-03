@@ -1,8 +1,11 @@
 use crate::coords::{Course, MagneticCourse, Speed};
 use crate::modes::Mode;
 use crate::Source;
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 /// The actual course and speed relative to the ground.
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, PartialEq, Clone)]
 pub struct VTG {
     /// Navigational system.
